@@ -1,0 +1,5 @@
+- Implementar controle pelo mouse <br>
+- A bola deve realizar uma animação contínua de translação e mudar de direção toda vez que quicar em alguma extremidade da janela de visualização (incluindo o bastão) <br>
+- Desenvolva uma estratégia para que a inclinação não seja sempre a mesma em todas as partes do bastão – causando sempre um movimento repetido <br>
+- O deslocamento da bola deve ter uma velocidade aceitável para a primeira fase. A estratégia de deslocamento deve ser pensada pelo grupo <br>
+- Melhorar front-end / adicionar imagem de background <br>
