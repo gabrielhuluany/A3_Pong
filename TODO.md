@@ -1,3 +1,7 @@
+- Corrigir o bug do contato, as vezes a bola passa pela borda do bastão <br>
+- Corrigir o bug do pause na segunda fase, a mensagem fica embaixo do objeto <br>
+- Adicionar texturas <br>
+- Melhorar iluminação <br>
 - Implementar controle pelo mouse <br>
 - A bola deve realizar uma animação contínua de translação e mudar de direção toda vez que quicar em alguma extremidade da janela de visualização (incluindo o bastão) <br>
 - Desenvolva uma estratégia para que a inclinação não seja sempre a mesma em todas as partes do bastão – causando sempre um movimento repetido <br>

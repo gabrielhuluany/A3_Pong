@@ -18,6 +18,7 @@ public class Keyboard implements KeyListener {
         //System.out.println("Pressionou a tecla: " + e.getKeyCode());
 
         switch (e.getKeyCode()) {
+            //Encerrar aplicação
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
                 break;
@@ -32,11 +33,11 @@ public class Keyboard implements KeyListener {
                 }
                 break;
             case KeyEvent.VK_P:
-                //Pause
+                //Pausar partida
                 cena.pausado = !cena.pausado;
                 break;
             case KeyEvent.VK_ENTER:
-                //Start
+                //Começar partida
                 if (cena.fase == 0) {
                     cena.fase = 1;
                 }
@@ -47,7 +48,7 @@ public class Keyboard implements KeyListener {
                 }
                 break;
             case KeyEvent.VK_BACK_SPACE:
-                //Stop
+                //Encerrar partida
                 if (cena.fase == 3) {
                     cena.fase = 0;
                     cena.resetar();

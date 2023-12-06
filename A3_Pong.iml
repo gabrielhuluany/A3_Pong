@@ -8,7 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JOGL_Linux" level="project" />
-    <orderEntry type="library" name="JOGL_Mac_OS_X" level="project" />
     <orderEntry type="library" name="JOGL_macOS" level="project" />
     <orderEntry type="library" name="JOGL_Win64" level="project" />
   </component>

@@ -11,25 +11,25 @@ import java.util.Locale;
  */
 
 public class Cena implements GLEventListener {
-    GLU glu;
-    GL2 gl;
-    GLUT glut;
+    private GLU glu;
+    private GL2 gl;
+    private GLUT glut;
 
-    float aspecto;
-    float bolaX = 0;
-    float bolaY = 1f;
-    char direcaoX;
-    char direcaoY = 'd';
-    boolean pausado = false;
-    int fase = 0;
-    float velocidade = 0.02f;
+    private float aspecto;
+    private float bolaX = 0;
+    private float bolaY = 1f;
+    private char direcaoX;
+    private char direcaoY = 'd';
+    public boolean pausado = false;
+    public int fase = 0;
+    private float velocidade = 0.02f;
 
-    float bastaoX = 0;
-    int pontuacao = 0;
-    int vidas = 5;
+    public float bastaoX = 0;
+    private int pontuacao = 0;
+    private int vidas = 5;
 
-    int iluminacao = GL2.GL_SMOOTH;
-    boolean iluminado = true;
+    private int iluminacao = GL2.GL_SMOOTH;
+    private boolean iluminado = true;
 
     @Override
     public void init(GLAutoDrawable drawable) {
@@ -56,7 +56,7 @@ public class Cena implements GLEventListener {
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity(); //Lê a matriz identidade
 
-        switch (fase) {
+        switch(fase) {
             case 0:
                 iniciarMenu();
                 break;
@@ -71,18 +71,18 @@ public class Cena implements GLEventListener {
                 break;
         }
 
-        if (iluminado) {
+        if(iluminado) {
             esquematizarIluminacao();
             ligarIluminacao();
         }
-        if (!iluminado) {
+        if(!iluminado) {
             desligarIluminacao();
         }
 
         gl.glFlush();
     }
     
-    public void esquematizarIluminacao() {
+    private void esquematizarIluminacao() {
         float[] luzAmbiente = { 0.7f, 0.7f, 0.7f, 1f };
         gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, luzAmbiente, 0);
 
@@ -93,51 +93,54 @@ public class Cena implements GLEventListener {
         gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, posicaoLuz, 0);
     }
     
-    public void ligarIluminacao() {
+    private void ligarIluminacao() {
         gl.glEnable(GL2.GL_COLOR_MATERIAL);
         gl.glEnable(GL2.GL_LIGHTING);
         gl.glEnable(GL2.GL_LIGHT0);
         gl.glShadeModel(iluminacao);
     }
     
-    public void desligarIluminacao() {
+    private void desligarIluminacao() {
         gl.glDisable(GL2.GL_LIGHT0);
         gl.glDisable(GL2.GL_LIGHTING);
     }
 
-    public void iniciarMenu() {
-        String size = "big";
-        float left = -0.650f;
-        float begin = 0.975f;
+    private void iniciarMenu() {
+        String tamanho = "grande";
+        float esquerda = -0.650f;
+        float inicio = 0.975f;
 
-        escrever(left, begin -= 0.1f, size, "Pong");
-        escrever(left, begin -= 0.1f, size, "O objetivo do jogo é mover o bastão para rebater a bola o máximo de vezes possível.");
-        escrever(left, begin -= 0.1f, size, "");
-        escrever(left, begin -= 0.1f, size, "Regras");
-        escrever(left, begin -= 0.1f, size, "- A bola surge aleatoriamente na esquerda ou na direita a partir do topo da tela.");
-        escrever(left, begin -= 0.1f, size, "- A trajetória da bola muda ao encostar no bastão, obstáculos e cantos da tela.");
-        escrever(left, begin -= 0.1f, size, "- A velocidade da bola aumenta de acordo com o tempo, pontuação e fase.");
-        escrever(left, begin -= 0.1f, size, "- O jogo possui 2 fases. Ao atingir 200 pontos a 2ª fase é iniciada.");
-        escrever(left, begin -= 0.1f, size, "- Você ganha 10 pontos a cada rebatida na bola com o bastão.");
-        escrever(left, begin -= 0.1f, size, "- Você possui 5 vidas e perde 1 vida quando deixa a bola cair.");
-        escrever(left, begin -= 0.1f, size, "- O jogo é finalizado quando você não possui mais vidas ou quando pressiona BACKSPACE.");
-        escrever(left, begin -= 0.1f, size, "");
-        escrever(left, begin -= 0.1f, size, "Comandos");
-        escrever(left, begin -= 0.1f, size, "- Mover o bastão < > ou Mouse");
-        escrever(left, begin -= 0.1f, size, "- Pausar e despausar o jogo P");
-        escrever(left, begin -= 0.1f, size, "- Finalizar o jogo BACKSPACE");
-        escrever(left, begin -= 0.1f, size, "- Fechar o programa ESC");
-        escrever(left, begin -= 0.1f, size, "");
-        escrever(left, begin -= 0.1f, size, "Pressione ENTER para jogar");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "Pong");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "O objetivo do jogo é mover o bastão para rebater a bola o máximo de vezes possível.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "Regras");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- A bola surge aleatoriamente na esquerda ou na direita a partir do topo da tela.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- A trajetória da bola muda ao encostar no bastão, obstáculos e cantos da tela.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- A velocidade da bola aumenta de acordo com o tempo, pontuação e fase.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- O jogo possui 2 fases. Ao atingir 200 pontos a 2ª fase é iniciada.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Você ganha 10 pontos a cada rebatida na bola com o bastão.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Você possui 5 vidas e perde 1 vida quando deixa a bola cair.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- O jogo é finalizado quando você não possui mais vidas ou quando pressiona BACKSPACE.");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "Comandos");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Mover o bastão < > ou Mouse");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Pausar e despausar o jogo P");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Finalizar o jogo BACKSPACE");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "- Fechar o programa ESC");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "");
+        escrever(esquerda, inicio -= 0.1f, tamanho, "Pressione ENTER para jogar");
     }
 
-    public void desenharVidas(float posicao, boolean preenchida) {
+    private void desenharVidas(float posicao, boolean preenchida) {
         desligarIluminacao();
         gl.glPushMatrix();
-        if (preenchida)
+        
+        if(preenchida) {
             gl.glColor3f(1, 0, 0);
-        else
+        }
+        else {
             gl.glColor3f(1, 1, 1);
+        }
 
         gl.glTranslatef(0.4f + posicao, -0.945f, 0);
 
@@ -151,20 +154,24 @@ public class Cena implements GLEventListener {
         gl.glPushMatrix();
         gl.glTranslatef(-0.006f, 0, 0);
         gl.glBegin(GL2.GL_POLYGON);
+        
         for(i=0 ; i < limite; i+= 0.01) {
             gl.glVertex2d(cX + rX * Math.cos(i),
                     cY + rY * Math.sin(i) );
         }
+        
         gl.glEnd();
         gl.glPopMatrix();
 
         gl.glPushMatrix();
         gl.glTranslatef(0.006f, 0, 0);
         gl.glBegin(GL2.GL_POLYGON);
-        for(i=0 ; i < limite; i+= 0.01) {
+        
+        for(i = 0 ; i < limite; i+= 0.01) {
             gl.glVertex2d(cX + rX * Math.cos(i),
-                    cY + rY * Math.sin(i) );
+                    cY + rY * Math.sin(i));
         }
+        
         gl.glEnd();
         gl.glPopMatrix();
 
@@ -179,7 +186,7 @@ public class Cena implements GLEventListener {
         gl.glColor3f(1, 1, 1);
     }
 
-    public void desenharBastao() {
+    private void desenharBastao() {
         gl.glPushMatrix();
         gl.glTranslatef(bastaoX, 0, 0);
         gl.glBegin(GL2.GL_QUADS);
@@ -199,12 +206,12 @@ public class Cena implements GLEventListener {
         gl.glPopMatrix();
     }
 
-    public void desenharBola() {
+    private void desenharBola() {
         gl.glPushMatrix();
         gl.glTranslatef(bolaX, bolaY, 0);
         gl.glColor3f(1, 1, 1);
 
-        double limit = 2 * Math.PI;
+        double limite = 2 * Math.PI;
         double i;
         double cX = 0;
         double cY = 0;
@@ -212,7 +219,7 @@ public class Cena implements GLEventListener {
         double rY = 0.1f;
 
         gl.glBegin(GL2.GL_POLYGON);
-        for (i = 0; i < limit; i += 0.01) {
+        for(i = 0; i < limite; i += 0.01) {
             gl.glVertex2d(cX + rX * Math.cos(i), cY + rY * Math.sin(i));
         }
         gl.glEnd();
@@ -220,9 +227,9 @@ public class Cena implements GLEventListener {
         gl.glPopMatrix();
     }
 
-    public void movimentarBolaAleatoriamente() {
+    private void movimentarBolaAleatoriamente() {
         double aleatorio = -0.8f + Math.random() * 1.6f;
-        if (aleatorio > 0) {
+        if(aleatorio > 0) {
             direcaoX = 'r';
         } else {
             direcaoX = 'l';
@@ -230,44 +237,39 @@ public class Cena implements GLEventListener {
         bolaX = Float.valueOf(String.format(Locale.US, "%.2f", aleatorio));
     }
 
-    public void movimentarBola() {
+    private void movimentarBola() {
         float xTransBallFixed = Float.valueOf(String.format(Locale.US, "%.1f", bolaX));
         float yTransBallFixed = Float.valueOf(String.format(Locale.US, "%.1f", bolaY));
 
-        if (fase == 2 && direcaoX == 'l'
-                && isObjectInYRange(xTransBallFixed, yTransBallFixed, -0.1f, 0.5f, 0.2f)) {
+        if(fase == 2 && direcaoX == 'l' && isObjectInYRange(xTransBallFixed, yTransBallFixed, -0.1f, 0.5f, 0.2f)) {
             direcaoX = 'r';
         }
-        if (fase == 2 && direcaoX == 'r'
-                && isObjectInYRange(xTransBallFixed, yTransBallFixed, -0.1f, 0.5f, -0.2f)) {
+        if(fase == 2 && direcaoX == 'r' && isObjectInYRange(xTransBallFixed, yTransBallFixed, -0.1f, 0.5f, -0.2f)) {
             direcaoX = 'l';
-        } else if (xTransBallFixed > -1f && direcaoX == 'l') {
+        } else if(xTransBallFixed > -1f && direcaoX == 'l') {
             bolaX -= velocidade/2;
-        } else if (xTransBallFixed == -1f && direcaoX == 'l') {
+        } else if(xTransBallFixed == -1f && direcaoX == 'l') {
             direcaoX = 'r';
-        } else if (xTransBallFixed < 1f && direcaoX == 'r') {
+        } else if(xTransBallFixed < 1f && direcaoX == 'r') {
             bolaX += velocidade/2;
-        } else if (xTransBallFixed == 1f && direcaoX == 'r') {
+        } else if(xTransBallFixed == 1f && direcaoX == 'r') {
             direcaoX = 'l';
         }
 
-        if (fase == 2 && direcaoY == 'u'
-                && isObjectInXRange(xTransBallFixed, yTransBallFixed, -0.2f, 0.2f, -0.2f)) {
+        if(fase == 2 && direcaoY == 'u' && isObjectInXRange(xTransBallFixed, yTransBallFixed, -0.2f, 0.2f, -0.2f)) {
             direcaoY = 'd';
-        } else if (fase == 2 && direcaoY == 'd'
-                && isObjectInXRange(xTransBallFixed, yTransBallFixed, -0.2f, 0.2f, 0.6f)) {
+        } else if(fase == 2 && direcaoY == 'd' && isObjectInXRange(xTransBallFixed, yTransBallFixed, -0.2f, 0.2f, 0.6f)) {
             direcaoY = 'u';
-        } else if (yTransBallFixed == -0.7f && direcaoY == 'd'
-                && isBallInRangeOfBar(xTransBallFixed)) {
+        } else if(yTransBallFixed == -0.7f && direcaoY == 'd' && isBallInRangeOfBar(xTransBallFixed)) {
             direcaoY = 'u';
             iluminado = false;
             iluminacao = iluminacao == GL2.GL_SMOOTH ? GL2.GL_FLAT : GL2.GL_SMOOTH;
-            pontuacao += 10;
-        } else if (yTransBallFixed < 0.9f && direcaoY == 'u') {
+            pontuacao += 20;
+        } else if(yTransBallFixed < 0.9f && direcaoY == 'u') {
             bolaY += velocidade;
-        } else if (yTransBallFixed == 0.9f && direcaoY == 'u') {
+        } else if(yTransBallFixed == 0.9f && direcaoY == 'u') {
             direcaoY = 'd';
-        } else if (yTransBallFixed < -1f) {
+        } else if(yTransBallFixed < -1f) {
             bolaY = 1f;
             bolaX = 0;
             vidas--;
@@ -279,31 +281,31 @@ public class Cena implements GLEventListener {
         }
     }
 
-    public void iniciarFase1() {
+    private void iniciarFase1() {
         desenharBastao();
         desenharBola();
 
-        if (!pausado) {
+        if(!pausado) {
             movimentarBola();
         } else {
             //gl.glColor3f(1, 1, 0);
-            escrever(-0.09f, 0.1f, "big", "Jogo pausado");
-            escrever(-0.2f, -0.1f, "big", "Pressione P para despausar");
+            escrever(-0.09f, 0.1f, "grande", "Jogo pausado");
+            escrever(-0.2f, -0.1f, "grande", "Pressione P para despausar");
             //gl.glColor3f(1, 1, 1);
         }
 
-        if (pontuacao == 200) {
+        if(pontuacao == 200) {
             fase = 2;
         }
 
-        if (vidas == 0) {
+        if(vidas == 0) {
             fase = 3;
         }
 
-        escrever(0.725f, -0.975f, "big", "Pontuação: " + pontuacao);
+        escrever(0.725f, -0.975f, "grande", "Pontuação: " + pontuacao);
 
-        for (int i = 1; i <= 5; i++) {
-            if (vidas >= i) {
+        for(int i = 1; i <= 5; i++) {
+            if(vidas >= i) {
                 desenharVidas(0.05f * i, true);
             }
             else {
@@ -312,11 +314,7 @@ public class Cena implements GLEventListener {
         }
     }
 
-    public void desenharArteFase2() {
-        escrever(-0.04f, 0.9f, "big", "2ª fase");
-    }
-
-    public void desenharObstaculoFase2() {
+    private void desenharObstaculoFase2() {
         gl.glPushMatrix();
         gl.glBegin(GL2.GL_QUADS);
         gl.glColor3f(1, 0, 1);
@@ -329,31 +327,31 @@ public class Cena implements GLEventListener {
         gl.glColor3f(1, 1, 1);
     }
 
-    public void iniciarFase2() {
+    private void iniciarFase2() {
         desenharBastao();
         desenharBola();
-        desenharArteFase2();
         desenharObstaculoFase2();
+        escrever(-0.04f, 0.9f, "grande", "2ª fase");
 
         velocidade = 0.03f;
 
-        if (!pausado) {
+        if(!pausado) {
             movimentarBola();
         } else {
             //gl.glColor3f(1, 1, 0);
-            escrever(-0.09f, 0.1f, "big", "Jogo pausado");
-            escrever(-0.2f, -0.1f, "big", "Pressione P para despausar");
+            escrever(-0.09f, 0.1f, "grande", "Jogo pausado");
+            escrever(-0.2f, -0.1f, "grande", "Pressione P para despausar");
             //gl.glColor3f(1, 1, 1);
         }
 
-        if (vidas == 0) {
+        if(vidas == 0) {
             fase = 3;
         }
 
-        escrever(0.725f, -0.975f, "big", "Pontuação: " + pontuacao);
+        escrever(0.725f, -0.975f, "grande", "Pontuação: " + pontuacao);
 
-        for (int i = 1; i <= 5; i++) {
-            if (vidas >= i) {
+        for(int i = 1; i <= 5; i++) {
+            if(vidas >= i) {
                 desenharVidas(0.05f * i, true);
             }
             else {
@@ -362,14 +360,14 @@ public class Cena implements GLEventListener {
         }
     }
 
-    public void finalizarJogo() {
-        escrever(-0.075f, 0.3f, "big", "Fim de jogo");
-        escrever(-0.25f, 0.2f, "big", "");
-        escrever(-0.125f, 0.1f, "big", "Pontuação final: " + pontuacao);
-        escrever(-0.25f, 0, "big", "");
-        escrever(-0.25f, -0.1f, "big", "- Jogar novamente ENTER");
-        escrever(-0.25f, -0.2f, "big", "- Voltar para o menu BACKSPACE");
-        escrever(-0.25f, -0.3f, "big", "- Fechar o programa ESC");
+    private void finalizarJogo() {
+        escrever(-0.075f, 0.3f, "grande", "Fim de jogo");
+        escrever(-0.25f, 0.2f, "grande", "");
+        escrever(-0.125f, 0.1f, "grande", "Pontuação final: " + pontuacao);
+        escrever(-0.25f, 0, "grande", "");
+        escrever(-0.25f, -0.1f, "grande", "- Jogar novamente ENTER");
+        escrever(-0.25f, -0.2f, "grande", "- Voltar para o menu BACKSPACE");
+        escrever(-0.25f, -0.3f, "grande", "- Fechar o programa ESC");
     }
 
     public void resetar() {
@@ -389,38 +387,39 @@ public class Cena implements GLEventListener {
         vidas = 5;
     }
 
-    public void escrever(float x, float y, String size, String phrase) {
+    public void escrever(float x, float y, String tamanho, String texto) {
         gl.glRasterPos2f(x, y);
-        switch (size) {
-            case "small":
-                glut.glutBitmapString(GLUT.BITMAP_8_BY_13, phrase);
+        switch(tamanho) {
+            case "pequena":
+                glut.glutBitmapString(GLUT.BITMAP_8_BY_13, texto);
                 break;
-            case "big":
-                glut.glutBitmapString(GLUT.BITMAP_TIMES_ROMAN_24, phrase);
+            case "grande":
+                glut.glutBitmapString(GLUT.BITMAP_TIMES_ROMAN_24, texto);
+                break;
         }
     }
 
-    public boolean isBallInRangeOfBar(float xTranslatedBallFixed) {
+    private boolean isBallInRangeOfBar(float xTranslatedBallFixed) {
         float leftBarLimit = Float.valueOf(String.format(Locale.US, "%.1f", bastaoX - 0.2f));
         float rightBarLimit = Float.valueOf(String.format(Locale.US, "%.1f", bastaoX + 0.2f));
 
-        if (leftBarLimit <= xTranslatedBallFixed && rightBarLimit >= xTranslatedBallFixed) {
+        if(leftBarLimit <= xTranslatedBallFixed && rightBarLimit >= xTranslatedBallFixed) {
             return true;
         }
 
         return false;
     }
 
-    public boolean isObjectInYRange(float xObj, float yObj, float bLimit, float tLimit, float xPoint) {
-        if (tLimit >= yObj && bLimit <= yObj && xObj == xPoint) {
+    private boolean isObjectInYRange(float xObj, float yObj, float bLimit, float tLimit, float xPoint) {
+        if(tLimit >= yObj && bLimit <= yObj && xObj == xPoint) {
             return true;
         }
 
         return false;
     }
 
-    public boolean isObjectInXRange(float xObj, float heightObj, float lLimit, float rLimit, float tLimit) {
-        if (lLimit <= xObj && rLimit >= xObj && heightObj == tLimit) {
+    private boolean isObjectInXRange(float xObj, float heightObj, float lLimit, float rLimit, float tLimit) {
+        if(lLimit <= xObj && rLimit >= xObj && heightObj == tLimit) {
             return true;
         }
 

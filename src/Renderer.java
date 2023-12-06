@@ -14,7 +14,7 @@ public class Renderer {
     private static GLWindow window = null;
     private static int screenWidth = 1366, screenHeight = 768;
 
-    public static void init() {
+    private static void init() {
         GLProfile.initSingleton();
         GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities caps = new GLCapabilities(profile);
